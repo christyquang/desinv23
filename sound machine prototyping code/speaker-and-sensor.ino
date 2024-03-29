@@ -5,8 +5,11 @@
 
 TMRpcm tmrpcm;
 
-const int trigPin = 3;
-const int echoPin = 2;
+const int trigPin = 6;
+const int echoPin = 7;
+const int numberOfFiles = 12; // Number of .wav files in your SD card
+String fileNames[numberOfFiles] = {"7pm.wav", "f1.wav", "f2.wav", "f3.wav", "f4.wav", "f5.wav", "f6.wav", "f7.wav", "f8.wav", "f9.wav", "f10.wav", "fvar.wav"}; // List of file names
+int fileIndex = 0;
 
 float duration, distance;
 
@@ -22,7 +25,7 @@ void setup() {
   }
 
   tmrpcm.setVolume(5);
-  tmrpcm.play("fvar.wav"); // Play audio file when the setup is complete
+  tmrpcm.play("7pm.wav"); // Play audio file when the setup is complete
 }
 
 void loop() {
@@ -41,7 +44,11 @@ void loop() {
 
   // Play audio when distance is less than a certain value
   if (distance < 50) {  
-    tmrpcm.play("fvar.wav");
+    // Generate a random file index
+    fileIndex = random(0, numberOfFiles);
+
+    // Play the randomly selected file
+    tmrpcm.play(fileNames[fileIndex].c_str());
     delay(5000); // Adjust the delay as needed to match the duration of your audio clip
   }
 }
