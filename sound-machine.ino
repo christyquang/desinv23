@@ -7,7 +7,7 @@ TMRpcm tmrpcm;
 
 const int trigPin = 6;
 const int echoPin = 7;
-const int numberOfFiles = 12; // Number of .wav files in your SD card
+const int numberOfFiles = 12; // # of .wav files in SD card
 String fileNames[numberOfFiles] = {"sus.wav", "f1.wav", "f2.wav", "f3.wav", "f4.wav", "f5.wav", "f6.wav", "f7.wav", "f8.wav", "f9.wav", "f10.wav", "fvar.wav"}; // List of file names
 int fileIndex = 0;
 
@@ -24,8 +24,8 @@ void setup() {
     return;
   }
 
-  tmrpcm.setVolume(5);
-  tmrpcm.play("sus.wav"); // Play audio file when the setup is complete
+  tmrpcm.setVolume(5); // max is 7 but going past 5 causes the output to be static-y
+  tmrpcm.play("sus.wav"); 
 }
 
 void loop() {
@@ -49,6 +49,6 @@ void loop() {
 
     // Play the randomly selected file
     tmrpcm.play(fileNames[fileIndex].c_str());
-    delay(11000); // Adjust the delay as needed to match the duration of your audio clip
+    delay(11000);
   }
 }
